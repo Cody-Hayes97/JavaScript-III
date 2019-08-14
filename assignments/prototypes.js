@@ -125,9 +125,29 @@ console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 function Villain(skills) {
   Humanoid.call(this, skills);
+  Villain.prototype.ironClaw = function() {
+    if (chosenOne.healthPoints >= 0) {
+      return (chosenOne.healthPoints = chosenOne.healthPoints - 5);
+    } else {
+      return `${chosenOne.name} has been destroyed`;
+    }
+  };
 }
+Villain.prototype = Object.create(Humanoid.prototype);
 
-const villain = new Humanoid({
+function Hero(skills) {
+  Humanoid.call(this, skills);
+  Hero.prototype.tonguey = function() {
+    if (betty.healthPoints >= 0) {
+      return (betty.healthPoints = betty.healthPoints - 5);
+    } else {
+      return `${betty.name} has been destroyed`;
+    }
+  };
+}
+Hero.prototype = Object.create(Humanoid.prototype);
+
+const betty = new Villain({
   createdAt: new Date(),
   dimensions: {
     length: 3,
@@ -136,7 +156,21 @@ const villain = new Humanoid({
   },
   healthPoints: 30,
   name: "Betty",
-  team: "",
-  weapons: ["Iron Claws", "Fists of Fury"],
+  team: "Evil Council",
+  weapons: ["Iron Claws", "Frenchmen"],
   language: "Chinese"
+});
+
+const chosenOne = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 2,
+    height: 4
+  },
+  healthPoints: 30,
+  name: "Chosen One",
+  team: "Crane School",
+  weapons: ["Tonguey", "Fists of Fury"],
+  language: "English"
 });
