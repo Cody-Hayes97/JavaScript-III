@@ -26,11 +26,11 @@ wind();
 const sayHello = {
   greet: "Hello",
   speak: function(name) {
-    console.log(`${this.greet}, ${name}`);
+    return `${this.greet}, ${name}`;
   }
 };
 
-sayHello.speak("Cody");
+console.log(sayHello.speak("Cody"));
 // code example for Implicit Binding
 
 // Principle 3
@@ -39,39 +39,37 @@ function Person(location) {
   this.name = "Cody";
   this.location = location;
   this.talk = function() {
-    console.log(
-      `Hello! My name is ${this.name} and I am from ${this.location}`
-    );
+    return `Hello! My name is ${this.name} and I am from ${this.location}`;
   };
 }
 
 const usa = new Person("the United States");
 const mexico = new Person("Mexico");
-usa.talk();
-mexico.talk();
+console.log(usa.talk());
+console.log(mexico.talk());
 
 // code example for New Binding
 
 // Principle 4
 
-function Person(location) {
-  this.name = "Cody";
-  this.location = location;
-  this.talk = function() {
-    console.log(
-      `Hello! My name is ${this.name} and I am from ${this.location}`
-    );
-  };
-}
+// function Person(location) {
+//   this.name = "Cody";
+//   this.location = location;
+//   this.talk = function() {
+//     console.log(
+//       `Hello! My name is ${this.name} and I am from ${this.location}`
+//     );
+//   };
+// }
 
-//const usa = new Person("the United States");
-//const mexico = new Person("Mexico");
+// const usa = new Person("the United States");
+// const mexico = new Person("Mexico");
 
-usa.talk.call(mexico);
-mexico.talk.apply(usa);
+console.log(usa.talk.call(mexico));
+console.log(mexico.talk.apply(usa));
 
 let locTalk = usa.talk.bind(mexico);
 
-console.log(locTalk);
+console.log(locTalk());
 
 // code example for Explicit Binding
